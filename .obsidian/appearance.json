@@ -1,3 +1,5 @@
 {
-  "theme": "obsidian"
+  "cssTheme": "Obsidian Nord",
+  "theme": "obsidian",
+  "baseFontSizeAction": true
 }

@@ -1,0 +1,15 @@
+# Obsidian 本機 UI 狀態(非內容)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Obsidian 垃圾桶
+.trash/
+
+# 建置產物 / 快取
+**/node_modules/
+__pycache__/
+*.pyc
+
+# （選用）若你的來源原檔量大、已另有備份,可停止追蹤兩個唯讀來源區:
+# /raw/
+# /trend-raw/

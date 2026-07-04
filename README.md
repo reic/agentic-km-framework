@@ -1,17 +1,27 @@
 # 知識管理與專案 Agent 系統（四工作流框架）
 
-> 一套讓 **Claude Code / Cowork 等 LLM Agent** 幫你經營個人知識資產的**純 markdown 框架**：把 LLM 當「編譯器」與「簿記員」，你只負責策展與判斷。本 repo 是**與領域無關的空骨架**——不含任何實際資料，clone 下來就是一個乾淨系統。
+> 一套讓 **LLM Agent（Claude Code／Codex／Antigravity 皆可）** 幫你經營個人知識資產的**純 markdown 框架**：把 LLM 當「編譯器」與「簿記員」，你只負責策展與判斷。本 repo 是**與領域無關的空骨架**——不含任何實際資料，clone 下來就是一個乾淨系統。
 
 ## 這個 repo 提供什麼
 
-- **可直接使用的空骨架**：四套工作流的規範檔（SPEC）、README、範本、儀表板、`.claude/commands` 命令與匯入比對工具 `tools/import_diff.py`，目錄結構已就位。
-- **一鍵安裝包**：[知識管理框架-安裝懶人包.md](知識管理框架-安裝懶人包.md) —— 把整份文件貼進新的 Claude Code / Cowork 工作階段，說「請依此懶人包，在目前資料夾安裝『知識管理框架』」，即可在任何資料夾重建本骨架（本 repo 的骨架就是由它產生）。
+- **可直接使用的空骨架**：四套工作流的規範檔（SPEC）、README、範本、儀表板、命令與匯入比對工具 `tools/import_diff.py`，目錄結構已就位。
+- **一鍵安裝包**：[知識管理框架-安裝懶人包.md](知識管理框架-安裝懶人包.md) —— 把整份文件貼進新的 Agent 工作階段，說「請依此懶人包，在目前資料夾安裝『知識管理框架』」，即可在任何資料夾重建本骨架（本 repo 的骨架就是由它產生）。
 - **就地升級包**：[知識管理框架-升級包-四工作流.md](知識管理框架-升級包-四工作流.md) —— 已安裝舊版的人用它升級到現行四套完整版，不覆蓋既有資料。
+
+## 多 Agent 通用設計
+
+| Agent | 怎麼載入規則 |
+|---|---|
+| **Codex** | 原生自動讀根目錄 [AGENTS.md](AGENTS.md)（開放標準） |
+| **Antigravity** | 原生自動讀根目錄 [AGENTS.md](AGENTS.md) |
+| **Claude Code** | 讀 [CLAUDE.md](CLAUDE.md)——內容只有一行 `@AGENTS.md` 指標，import 同一份 |
+
+規則正本只有 `AGENTS.md` 一份。斜線命令（`/km-ready`、`/project-start`、`/project-end`、`/number-audit`）唯一定義處在 `.claude/commands/`：Claude Code 原生執行；其他 Agent 依 AGENTS.md 的「多 Agent 支援與命令對照」表讀取對應檔案照做。
 
 ## 兩種上手方式
 
-1. **直接用本 repo**：clone（或下載 zip）→ 用 Obsidian 開啟資料夾 → 在資料夾裡啟動 Claude Code → 開始丟文件、下指令。
-2. **貼安裝包**：不 clone 也行——複製《安裝懶人包》全文貼給 Claude，讓它在你指定的資料夾長出整套系統。
+1. **直接用本 repo**：clone（或下載 zip）→ 用 Obsidian 開啟資料夾 → 在資料夾裡啟動你的 Agent → 開始丟文件、下指令。
+2. **貼安裝包**：不 clone 也行——複製《安裝懶人包》全文貼給任一 Agent，讓它在你指定的資料夾長出整套系統。
 
 ## 設計理念（一頁版）
 
@@ -35,7 +45,7 @@
 | **趨勢庫 trend-wiki/** | 高頻新聞低成本捕獲＋趨勢，沉澱回 wiki | 食材速記 | trend-wiki/TREND-WIKI.md | trend-wiki/README.md |
 | **個人觀點庫 personal-km/** | 只收你的觀點/判斷/經驗；卡片盒 | 傳說食材 | personal-km/PERSONAL-KM.md | personal-km/README.md |
 
-跟 Claude 對話時它先讀 `CLAUDE.md` 判斷任務屬哪套，再讀對應子規範。不確定屬哪套？直接說需求即可。
+跟任一 Agent（Claude Code／Codex／Antigravity）對話時，它先讀根目錄 `AGENTS.md`（Claude Code 經 `CLAUDE.md` 的 `@AGENTS.md` 指標載入同一份）判斷任務屬哪套，再讀對應子規範。不確定屬哪套？直接說需求即可。
 
 ## 怎麼開始（每套一句話）
 - **累積知識**：文件放進 `raw/` →「匯入這份」→ 提問 →「健檢」。

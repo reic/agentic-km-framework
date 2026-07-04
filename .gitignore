@@ -1,15 +1,22 @@
-# Obsidian 本機 UI 狀態(非內容)
+# Obsidian 本機 UI 狀態（非內容，勿版控）
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 
-# Obsidian 垃圾桶
+# Obsidian 垃圾桶（刪除筆記快取）
 .trash/
 
-# 建置產物 / 快取
-**/node_modules/
+# 快取 / 建置產物
 __pycache__/
 *.pyc
+**/node_modules/
 
-# （選用）若你的來源原檔量大、已另有備份,可停止追蹤兩個唯讀來源區:
-# /raw/
-# /trend-raw/
+# 唯讀來源凍結區（raw/、trend-raw/）預設不追蹤：
+# 體積大（PDF/docx/剪報原檔）、且可能含有版權文件，請另行備份原檔。
+# 例外規則保留 .gitkeep，讓空目錄結構仍可進 git。
+# 若你想連原始來源一起版控，刪除下面六行即可。
+raw/**
+!raw/**/
+!raw/**/.gitkeep
+trend-raw/**
+!trend-raw/**/
+!trend-raw/**/.gitkeep

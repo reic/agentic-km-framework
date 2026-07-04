@@ -57,3 +57,9 @@
 
 > **匯入比對助手**：`raw/`、`trend-raw/` 的匯入都先用 `tools/import_diff.py` 以**檔案內容雜湊**比對，秒判哪些是新檔、哪些是改名或重複（含同文重 clip），只匯入真正的新檔、完成後記帳。
 > **版控範圍**：`raw/`、`trend-raw/` 原檔預設不進 git（見 `.gitignore`），請另行備份；wiki／trend-wiki 的編譯產出才是 git 追蹤的資產。
+
+---
+
+## 授權 License
+
+本框架以 [MIT License](LICENSE) 釋出。隨附的 Obsidian 元件為第三方作品，各依其原授權（皆為 MIT）：[file-tree-alternative](https://github.com/ozntel/file-tree-alternative) 外掛、[Obsidian Nord](https://github.com/insanum/obsidian_nord) 主題。

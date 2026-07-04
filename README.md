@@ -10,13 +10,15 @@
 
 ## 多 Agent 通用設計
 
-| Agent | 怎麼載入規則 |
-|---|---|
-| **Codex** | 原生自動讀根目錄 [AGENTS.md](AGENTS.md)（開放標準） |
-| **Antigravity** | 原生自動讀根目錄 [AGENTS.md](AGENTS.md) |
-| **Claude Code** | 讀 [CLAUDE.md](CLAUDE.md)——內容只有一行 `@AGENTS.md` 指標，import 同一份 |
+規則正本只有一份：根目錄 [AGENTS.md](AGENTS.md)。其他都是指標檔，把 Agent 導回同一份。
 
-規則正本只有 `AGENTS.md` 一份。斜線命令（`/km-ready`、`/project-start`、`/project-end`、`/number-audit`）唯一定義處在 `.claude/commands/`：Claude Code 原生執行；其他 Agent 依 AGENTS.md 的「多 Agent 支援與命令對照」表讀取對應檔案照做。
+| Agent | 規則載入 | skills 位置 |
+|---|---|---|
+| **Codex** | 原生自動讀根目錄 `AGENTS.md`（正本） | `.codex/skills/` |
+| **Claude Code** | 讀 `CLAUDE.md` —— 只有一行 `@AGENTS.md` import 指標 | `.claude/skills/` |
+| **Antigravity 2.0** | 讀 `.agents/AGENTS.md` —— 指標檔，導回根目錄正本 | `.agents/skills/` |
+
+斜線命令（`/km-ready`、`/project-start`、`/project-end`、`/number-audit`）唯一定義處在 `.claude/commands/`：Claude Code 原生執行；其他 Agent 依 AGENTS.md 的「多 Agent 支援與命令對照」表讀取對應檔案照做。
 
 ## 兩種上手方式
 
@@ -45,7 +47,7 @@
 | **趨勢庫 trend-wiki/** | 高頻新聞低成本捕獲＋趨勢，沉澱回 wiki | 食材速記 | trend-wiki/TREND-WIKI.md | trend-wiki/README.md |
 | **個人觀點庫 personal-km/** | 只收你的觀點/判斷/經驗；卡片盒 | 傳說食材 | personal-km/PERSONAL-KM.md | personal-km/README.md |
 
-跟任一 Agent（Claude Code／Codex／Antigravity）對話時，它先讀根目錄 `AGENTS.md`（Claude Code 經 `CLAUDE.md` 的 `@AGENTS.md` 指標載入同一份）判斷任務屬哪套，再讀對應子規範。不確定屬哪套？直接說需求即可。
+跟任一 Agent（Claude Code／Codex／Antigravity）對話時，它先讀根目錄 `AGENTS.md` 總綱判斷任務屬哪套，再讀對應子規範（Codex 原生讀取；Claude Code 經 `CLAUDE.md`、Antigravity 經 `.agents/AGENTS.md` 指標檔載入同一份）。不確定屬哪套？直接說需求即可。
 
 ## 怎麼開始（每套一句話）
 - **累積知識**：文件放進 `raw/` →「匯入這份」→ 提問 →「健檢」。

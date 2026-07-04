@@ -23,7 +23,8 @@
 
 ## 多 Agent 支援與命令對照（Claude Code／Codex／Antigravity 通用）
 
-- 本檔（`AGENTS.md`）是**規則唯一正本**：Codex 與 Antigravity 原生自動載入根目錄 `AGENTS.md`；Claude Code 透過 `CLAUDE.md`（僅含 `@AGENTS.md` 一行 import）載入同一份。**不要把規則另寫進 CLAUDE.md**，以免兩份不同步。
+- 本檔（根目錄 `AGENTS.md`）是**規則唯一正本**。各 Agent 載入方式：**Codex** 原生自動讀根目錄 `AGENTS.md`；**Claude Code** 讀 `CLAUDE.md`（僅含 `@AGENTS.md` 一行 import）；**Antigravity 2.0** 讀 `.agents/AGENTS.md`（指標檔，導回本檔）。**不要把規則另寫進任何指標檔**，以免多份不同步。
+- **skills 位置**（若日後為工作流加 skills）：Claude Code 放 `.claude/skills/`、Codex 放 `.codex/skills/`、Antigravity 放 `.agents/skills/`。同一 skill 內容以其中一處為正本、其餘放指標或複本並註明正本位置。
 - **斜線命令唯一定義處在 `.claude/commands/`**。Claude Code 原生把它們當 slash command 執行；**其他 Agent（Codex、Antigravity 等）看到使用者輸入 `/命令名` 或對應觸發語時，請讀取下表定義檔並逐字照其步驟執行**（命令檔就是純 markdown 操作指示，任何 Agent 都能照做）：
 
 | 使用者輸入 | 對應觸發語 | 定義檔 |
@@ -63,6 +64,7 @@
 ```
 （根）
 ├── AGENTS.md（總綱正本）  CLAUDE.md（Claude Code 指標）  README.md
+├── .agents/AGENTS.md（Antigravity 指標；skills 放 .agents/skills/）
 ├── raw/                       ← wiki 來源（唯讀）
 ├── tools/                     ← import_diff.py（匯入比對工具，內容雜湊 manifest）
 ├── wiki/                      ← 知識庫：WIKI.md / README / index-wiki / wiki-log / log/ / _import/ / summaries / articles / derived / _templates

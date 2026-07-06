@@ -32,6 +32,11 @@
 - **命令觸發、無背景自動**：所有檢查／整合／回填都由使用者開口才跑；AI 只比對＋提案，裁定權永遠在使用者。
 - **純文字 + git**：一切 markdown、可版控、可遷移；`raw/`、`trend-raw/` 來源原檔預設不進 git（`.gitignore` 已設好，`.gitkeep` 保留結構），請另行備份。
 
+## 設計源起與致謝
+
+- **`wiki/` 核心架構＝參考他人概念實作**：源自 Andrej Karpathy 提出的 **LLM Wiki** 概念（[原始 gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)），實作時採用 DAIR.AI Academy 的整理版說明 [*LLM Knowledge Bases (Karpathy)*](https://academy.dair.ai/blog/llm-knowledge-bases-karpathy) ——把 LLM 當「編譯器」，將策展文件編譯成結構化、互連的 markdown wiki；個人規模不需向量資料庫；查詢的高價值產出回填 wiki，讓知識複利成長。
+- **其餘全部＝本專案的原創實作**：`project/`（把知識用出去的六階段流水線）、`trend-wiki/`（高頻新聞低成本捕獲＋預測修訂 vintage 追蹤）、`personal-km/`（觀點卡片盒＋觀點密度 gate）三套工作流，以及「wiki 為軸心的 hub-and-spoke 連動架構」「多 Agent 通用化（AGENTS.md 正本＋指標檔）」「內容雜湊匯入比對工具」「數字基準稽核」等機制，皆為作者在該 wiki 核心之上的自行設計與擴展。
+
 ---
 
 以下為安裝後系統自身的使用說明（骨架原文）。

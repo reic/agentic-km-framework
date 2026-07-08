@@ -8,7 +8,7 @@ argument-hint: [專案 slug（選填）；留空則列出「🟢 執行中」清
 **目標專案**：`$ARGUMENTS`
 
 1. **定位專案**：有給 slug 直接用；留空則讀 `project/index-project.md` 的「🟢 執行中專案」表列出選項讓使用者選（只有一個就直接開工並告知）。
-2. **讀入脈絡**：`index-project.md` 對應列＋概況段落 → `3-status/<proj>-status.md` **最上面（最新）一則** → `2-guide/<proj>-guide.md`（有無新修正）→ `4-report/<proj>-report.md`（版本號、大致範圍）。`1-goal` 只在需重新確認驗收標準時才讀。
+2. **讀入脈絡**：`index-project.md` 對應列＋概況段落 → `3-status/<proj>-status.md` **最上面（最新）一則** → `2-guide/<proj>-guide.md`（有無新修正）→ `4-report/` 下該專案報告檔（用 glob `<proj>*` 找：可能是單檔、分章 `-chN` 或多版本 `-vN`，看版本號、大致範圍）。`1-goal` 只在需重新確認驗收標準時才讀。
 3. **給開工簡報**（給使用者看，不寫檔案）：目前階段／完成度／下一步、上次卡點／風險、近期時程；若 guide 有 status 未提及的新修正，或 status 下一步與 index 有落差，主動點出來請使用者確認。
 4. 簡報完直接待命，等使用者下指令，不主動做實際產出。
 

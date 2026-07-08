@@ -18,4 +18,4 @@
 | 5️⃣ 結案 | 「結案」 | finish：評估＋併檔清殘留＋洞見**回填 wiki** |
 
 ## 跨視窗接續
-開工先 `/project-start [slug]`（讀進度接上狀態，只讀不寫）；告一段落或換視窗前 `/project-end [slug]`（落一則 status 日誌＋同步 index）。
+開工先 `/proj-resume [slug]`（讀進度接上狀態，只讀不寫）；告一段落或換視窗前 `/proj-save [slug]`（落一則 status 日誌＋同步 index）。

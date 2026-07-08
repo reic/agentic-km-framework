@@ -30,8 +30,8 @@
 | 使用者輸入 | 對應觸發語 | 定義檔 |
 |---|---|---|
 | `/km-ready [卡]` | 「上架待確認」 | `.claude/commands/km-ready.md` |
-| `/project-start [slug]` | 「專案開工」 | `.claude/commands/project-start.md` |
-| `/project-end [slug]` | 「專案收工」 | `.claude/commands/project-end.md` |
+| `/proj-resume [slug]` | 「專案開工」 | `.claude/commands/proj-resume.md` |
+| `/proj-save [slug]` | 「專案收工」 | `.claude/commands/proj-save.md` |
 | `/number-audit [範圍]` | 「數字健檢」「基準稽核」 | `.claude/commands/number-audit.md` |
 
 ## 共用慣例（全資料夾適用，唯一定義處）

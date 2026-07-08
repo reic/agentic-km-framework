@@ -28,4 +28,4 @@
 > **每一步都回 index-project.md 同步**該專案的階段／完成度／下一步，並維護「執行中／待啟動／已結案」分區。
 
 ## 換視窗接續（跨對話）
-project 任務常跨天、跨視窗（含 Code↔Cowork）。開始前 `/project-start [slug]`（讀 index＋最新 status 日誌接進度，只讀不寫）；告一段落或要換視窗前 `/project-end [slug]`（落一則新 status 日誌＋同步 index，收尾問 commit）。命令內容見 `.claude/commands/project-start.md`／`project-end.md`。
+project 任務常跨天、跨視窗（含 Code↔Cowork）。開始前 `/proj-resume [slug]`（讀 index＋最新 status 日誌接進度，只讀不寫）；告一段落或要換視窗前 `/proj-save [slug]`（落一則新 status 日誌＋同步 index，收尾問 commit）。命令內容見 `.claude/commands/proj-resume.md`／`proj-save.md`。

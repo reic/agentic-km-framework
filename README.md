@@ -18,7 +18,9 @@
 | **Claude Code** | 讀 `CLAUDE.md` —— 只有一行 `@AGENTS.md` import 指標 | `.claude/skills/` |
 | **Antigravity 2.0** | 讀 `.agents/AGENTS.md` —— 指標檔，導回根目錄正本 | `.agents/skills/` |
 
-斜線命令（`/km-ready`、`/project-start`、`/project-end`、`/number-audit`）唯一定義處在 `.claude/commands/`：Claude Code 原生執行；其他 Agent 依 AGENTS.md 的「多 Agent 支援與命令對照」表讀取對應檔案照做。
+斜線命令（`/km-ready`、`/proj-resume`、`/proj-save`、`/number-audit`）唯一定義處在 `.claude/commands/`：Claude Code 原生執行；其他 Agent 依 AGENTS.md 的「多 Agent 支援與命令對照」表讀取對應檔案照做。
+
+> 補充：本框架在 `project/9-draft` 產製 docx／pptx／xlsx 交付物時，會搭配 Agent 平台自帶的文件處理 skills（如 Claude Code 內建的 pdf/docx/xlsx/pptx skills）。這些 skills 是 Anthropic 的授權素材、**不隨本 repo 發佈**；Claude Code 使用者開箱即有，其他 Agent 請用各自平台的文件處理能力。
 
 ## 兩種上手方式
 

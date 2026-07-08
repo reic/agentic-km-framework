@@ -3,7 +3,7 @@ description: 專案收工——把這次對話做了什麼、決定了什麼、�
 argument-hint: [專案 slug（選填）；只討論了一個專案時可省略，Claude 會自己判斷]
 ---
 
-你正在執行**專案收工**——把這次對話對某專案做的事完整落檔，讓之後任何視窗用 `/project-start` 都能接上。動手前理解 `project/PROJECT.md` 的「index＝狀態、status＝事件日誌」慣例。
+你正在執行**專案收工**——把這次對話對某專案做的事完整落檔，讓之後任何視窗用 `/proj-resume` 都能接上。動手前理解 `project/PROJECT.md` 的「index＝狀態、status＝事件日誌」慣例。
 
 **目標專案**：`$ARGUMENTS`
 

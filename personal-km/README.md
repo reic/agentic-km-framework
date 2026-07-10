@@ -19,4 +19,4 @@
 | 上架待確認 | `/km-ready ⟨卡⟩`（留空掃描） | gate 檢查＋metadata 健檢＋列入 _pending-confirm |
 | 確認 | 打勾 `- [x]` →「確認」 | 定稿進 2-cards、記 log。**觀點永遠你拍板** |
 | 檢查 | 「檢查 2-cards／某卡」 | 就地標待更新、健檢觀點密度 |
-| 查詢加值 | 「用 personal-km＋wiki 論述〈X〉」 | 撈卡(主張)＋wiki(靜態事實)＋trend-wiki(時序佐證)配對成論述 → 新洞見回填成卡 |
+| 查詢加值 | 「用 personal-km＋wiki 論述〈X〉」 | 撈卡(主張)＋wiki(靜態事實)＋trend-wiki(時序佐證)配對成論述 → 全文留存 `3-output/`（`cards_used`＋`wiki_refs`、卡 `used_in` 回勾）→ 新洞見回填成卡 |

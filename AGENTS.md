@@ -57,7 +57,7 @@
 - **方向**：project／trend-wiki／personal-km 都**單向參考** wiki；wiki 不依賴任何一方。
 - **回讀／回填**：project 寫 guide/report 前回讀最新 wiki 頁（標 `wiki_refs`）；結案把可沉澱洞見回填 wiki。
 - **趨勢沉澱**：trend-wiki 趨勢結論穩定後回填 wiki（更新既有 articles 或新興主題畢業成新文章）；純命令觸發。project 亦可單向引用趨勢頁當報告素材。
-- **觀點 vs 事實**：personal-km 收你的觀點、wiki 收客觀事實；卡用 `wiki_refs` 勾住 wiki 事實、不重建。查詢加值時撈卡(主張)＋wiki(事實)配對成論述、新洞見回填成卡。
+- **觀點 vs 事實**：personal-km 收你的觀點、wiki 收客觀事實；卡用 `wiki_refs` 勾住 wiki 事實、不重建。查詢加值時撈卡(主張)＋wiki(事實)配對成論述、全文留存 `3-output/`、新洞見回填成卡。
 - **趨勢 → 觀點（單向、手動）**：personal-km 可把 trend-wiki 趨勢頁當論述的**動態佐證**（靜態事實找 wiki、時序/盤點找 trend-wiki）；讀趨勢產生的判斷也是觀點原料，手動丟進 personal-km `0-inbox`。trend-wiki 不依賴 personal-km、不收觀點；personal-km 不回填趨勢頁。**這是兩個 spoke 間唯一接觸面，刻意保持輕量單向。**
 
 ## 目錄結構（總覽）
@@ -72,7 +72,7 @@
 ├── project/                   ← 專案：PROJECT.md / README / index-project
 │   ├── 0-project-raw/ 1-goal/ 2-guide/ 3-status/ 4-report/ 5-finish/ 9-draft/ _templates/
 ├── personal-km/              ← 個人觀點庫：PERSONAL-KM.md / README / index / _pending-confirm / _confirm-log
-│   └── 0-inbox/ 1-tuning/ 2-cards/ 9-archive/
+│   └── 0-inbox/ 1-tuning/ 2-cards/ 3-output/ 9-archive/
 ├── trend-raw/                 ← 趨勢原檔（唯讀，root 層）
 │   ├── YYYY/                  ← 新聞剪報（按年）
 │   ├── reports/<系列>/        ← 定期報告（季報/年報，按系列）

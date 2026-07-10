@@ -44,6 +44,6 @@
 ## 6. 查詢加值：橋接（烹調 + 回填）
 1. **查詢**：按 facet 撈 2-cards（tags 領域＋用途、type∈{觀點,經驗,提問}）＋ 對應 wiki 事實 ＋（需時間維度時）trend-wiki 趨勢頁。
 2. **配對**：每個論點配「你的主張（personal-km）＋ 佐證（wiki＝靜態事實；trend-wiki＝動態時序/盤點）」。趨勢佐證引 `[[topics/X]]` 不重建。
-3. **產出**：交給 project（4-report）。
-4. **回填**：新洞見丟回 0-inbox 成新卡；用到的卡記 `used_in:`。
+3. **產出（留存全文）**：論述全文存 **`3-output/`**（烹調產出區，`type: 論述`；frontmatter 用 `cards_used` 列用到的卡、`wiki_refs` 列佐證頁）；要進報告時再由 project（4-report）引用。
+4. **回填**：新洞見丟回 0-inbox 成新卡；用到的卡記 `used_in:`（指向 3-output 論述頁或報告）。
 - 單向：personal-km 參考 wiki/trend-wiki，兩者不依賴它；不回填趨勢頁。卡 `wiki_refs` 勾住事實。

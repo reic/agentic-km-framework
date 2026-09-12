@@ -4,19 +4,20 @@
 
 ## 這個 repo 提供什麼
 
-- **可直接使用的空骨架**：四套工作流的規範檔（SPEC）、README、範本、儀表板、命令與匯入比對工具 `tools/import_diff.py`，目錄結構已就位。
+- **可直接使用的空骨架**：四套工作流的規範檔（SPEC）、README、範本、儀表板、斜線命令，以及匯入比對工具 `tools/import_diff.py`、frontmatter 守門員 `tools/check_frontmatter.py`、發行抽取工具 `tools/extract_pack.py`，目錄結構已就位。
+- **Claude Code 的自動守門與委派**：`.claude/settings.json` 掛 PostToolUse hook，每次寫 `.md` 自動驗 YAML frontmatter；`permissions.deny` 把 `project/0-project-raw/` 鎖成唯讀；`.claude/agents/` 附 `news-extractor` 子代理，趨勢匯入時平行抽取、把原文擋在子脈絡外。其他 Agent 不吃這些設定，靠總綱的規範自律。
 - **一鍵安裝包**：[知識管理框架-安裝懶人包.md](知識管理框架-安裝懶人包.md) —— 把整份文件貼進新的 Agent 工作階段，說「請依此懶人包，在目前資料夾安裝『知識管理框架』」，即可在任何資料夾重建本骨架（本 repo 的骨架就是由它產生）。
 - **就地升級包**：[知識管理框架-升級包-四工作流.md](知識管理框架-升級包-四工作流.md) —— 已安裝舊版的人用它升級到現行四套完整版，不覆蓋既有資料。
 
 ## 多 Agent 通用設計
 
-規則正本只有一份：根目錄 [AGENTS.md](AGENTS.md)。其他都是指標檔，把 Agent 導回同一份。
+總綱是**兩份平行維護的完整正本**（骨架裡 [CLAUDE.md](CLAUDE.md) 與 [AGENTS.md](AGENTS.md) 內容相同），不是「一份正本＋import 指標」。理由是 Agent 能力不同：會依路由確實去追子規範的，總綱可以瘦；不一定追參照的，關鍵鐵則**必須內嵌**才跑得起來——指標式的間接層在這裡不可靠。**代價是同步義務**：安全護欄、共用慣例、橋接原則這類實質規則改動時，兩份都要改（兩份總綱各自的「兩份總綱的分工」一節有寫）。
 
 | Agent | 規則載入 | skills 位置 |
 |---|---|---|
-| **Codex** | 原生自動讀根目錄 `AGENTS.md`（正本） | `.codex/skills/` |
-| **Claude Code** | 讀 `CLAUDE.md` —— 只有一行 `@AGENTS.md` import 指標 | `.claude/skills/` |
-| **Antigravity 2.0** | 讀 `.agents/AGENTS.md` —— 指標檔，導回根目錄正本 | `.agents/skills/` |
+| **Codex** | 原生自動讀根目錄 `AGENTS.md`（完整正本） | `.codex/skills/` |
+| **Claude Code** | 原生自動讀 `CLAUDE.md`（完整正本，與 `AGENTS.md` 平行維護） | `.claude/skills/` |
+| **Antigravity 2.0** | 讀 `.agents/AGENTS.md` —— 唯一的輕量指標檔，導回根目錄 `AGENTS.md` | `.agents/skills/` |
 
 斜線命令（`/km-ready`、`/proj-resume`、`/proj-save`、`/number-audit`）唯一定義處在 `.claude/commands/`：Claude Code 原生執行；其他 Agent 依 AGENTS.md 的「多 Agent 支援與命令對照」表讀取對應檔案照做。
 
@@ -37,7 +38,7 @@
 ## 設計源起與致謝
 
 - **`wiki/` 核心架構＝參考他人概念實作**：源自 Andrej Karpathy 提出的 **LLM Wiki** 概念（[原始 gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)），實作時採用 DAIR.AI Academy 的整理版說明 [*LLM Knowledge Bases (Karpathy)*](https://academy.dair.ai/blog/llm-knowledge-bases-karpathy) ——把 LLM 當「編譯器」，將策展文件編譯成結構化、互連的 markdown wiki；個人規模不需向量資料庫；查詢的高價值產出回填 wiki，讓知識複利成長。
-- **其餘全部＝本專案的原創實作**：`project/`（把知識用出去的六階段流水線）、`trend-wiki/`（高頻新聞低成本捕獲＋預測修訂 vintage 追蹤）、`personal-km/`（觀點卡片盒＋觀點密度 gate）三套工作流，以及「wiki 為軸心的 hub-and-spoke 連動架構」「多 Agent 通用化（AGENTS.md 正本＋指標檔）」「內容雜湊匯入比對工具」「數字基準稽核」等機制，皆為作者在該 wiki 核心之上的自行設計與擴展。
+- **其餘全部＝本專案的原創實作**：`project/`（把知識用出去的六階段流水線）、`trend-wiki/`（高頻新聞低成本捕獲＋預測修訂 vintage 追蹤）、`personal-km/`（觀點卡片盒＋觀點密度 gate）三套工作流，以及「wiki 為軸心的 hub-and-spoke 連動架構」「多 Agent 通用化（雙總綱平行維護＋指標檔）」「內容雜湊匯入比對工具」「數字基準稽核」等機制，皆為作者在該 wiki 核心之上的自行設計與擴展。
 
 ---
 

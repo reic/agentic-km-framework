@@ -11,7 +11,7 @@
 ```
 第一層 捕獲 Capture（便宜、高頻）
   手動選稿（Web Clipper 等）放入 ../trend-raw/YYYY/ → 指令「匯入趨勢」
-        │  便宜模型批次抽取＋標籤（不過濾，選稿你已做）
+        │  委派 news-extractor 子代理平行抽取＋標籤（不過濾，選稿你已做）
         ▼
   trend-wiki/stream/YYYY-MM/YYYY-MM-DD.md   事實日誌（每批一檔，append-only）
 
@@ -25,7 +25,7 @@
 ## Phase 1 — 捕獲 Capture
 入口：選稿 → 放入 `../trend-raw/YYYY/` → 指令「匯入趨勢」。
 **Step 0 比對新檔**：先跑 `python tools/import_diff.py status trend-raw/YYYY`，以內容雜湊比對 `trend-wiki/_import/news-manifest.tsv`，**只抽取 🆕 新檔**（同文重複/改名自動跳過；去重採 full MD5 ＋ `.md` body 指紋，抓「同文重 clip」）。抽完跑 `commit trend-raw/YYYY --batch YYYY-MM-DD --target stream/YYYY-MM/YYYY-MM-DD.md` 記帳。manifest 另有 `published` 欄（工具自動從來源 frontmatter 抽新聞發布日）。
-抽取＋標籤（便宜模型批次，一次 10–20 篇）：每篇抽成 stream 日誌**一行**：
+抽取＋標籤（**委派子代理平行做，主對話不讀原文**）：把本批 🆕 新檔切成每組 5–8 檔，平行派給 `news-extractor`（`.claude/agents/news-extractor.md`；安裝包檔案 37）。委派是為**脈絡隔離**（原文留在子脈絡，主對話只收表格行），**不是為了用便宜模型**——抽取要判斷「這篇真正的新事實」、實體消歧、📊 旗標，尤其**限定詞與基準不能掉**（把「公司內部占比」抽成「占全球」，兩數字相同、不矛盾，Phase 4 掃不出來），故**模型至少 Sonnet**。主對話合併後**抽驗**帶數字的行。沒有子代理的環境自己分批做，規則相同。每篇抽成 stream 日誌**一行**：
 `日期 | 來源 | 實體 | 主題標籤 | 事實類型 | 關鍵內容 | 關係(選填) | 原檔連結`
 - 日期＝新聞發布日；實體＝公司/人/機構（查詢錨點，可多個）；事實類型＝財報財測/政策變動/合作進展/技術里程碑/市場數據/觀點；關鍵內容＝該篇真正的新事實（簡短，不抄全文）；關係（選填）＝主體—關係—客體。
 - **附圖旗標（選填）**：來源 md 若內嵌「帶數據的圖」（走勢/市占/roadmap/盤點），在原檔欄連結後加 `📊<png檔名>`（圖在 `../trend-raw/attachments/`）；純 logo/裝飾圖不標。**只標記、不讀圖**——讀圖的昂貴動作留到 Phase 2 按需觸發。

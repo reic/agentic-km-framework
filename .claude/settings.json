@@ -1,0 +1,51 @@
+{
+  "env": {
+    "PYTHONUTF8": "1",
+    "PYTHONIOENCODING": "utf-8"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git show*)",
+      "Bash(git branch*)",
+      "Bash(python tools/import_diff.py status*)",
+      "Bash(python tools/extract.py *)",
+      "Bash(python tools/check_frontmatter.py*)",
+      "PowerShell(git status*)",
+      "PowerShell(git log*)",
+      "PowerShell(git diff*)",
+      "PowerShell(git show*)",
+      "PowerShell(git branch*)",
+      "PowerShell(python tools/import_diff.py status*)",
+      "PowerShell(python tools/extract.py *)",
+      "PowerShell(python tools/check_frontmatter.py*)"
+    ],
+    "deny": [
+      "Write(./raw/**)",
+      "Edit(./raw/**)",
+      "NotebookEdit(./raw/**)",
+      "Write(./trend-raw/**)",
+      "Edit(./trend-raw/**)",
+      "NotebookEdit(./trend-raw/**)",
+      "Write(./project/0-project-raw/**)",
+      "Edit(./project/0-project-raw/**)",
+      "NotebookEdit(./project/0-project-raw/**)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python tools/check_frontmatter.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

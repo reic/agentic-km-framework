@@ -23,12 +23,6 @@
       "PowerShell(python tools/check_frontmatter.py*)"
     ],
     "deny": [
-      "Write(./raw/**)",
-      "Edit(./raw/**)",
-      "NotebookEdit(./raw/**)",
-      "Write(./trend-raw/**)",
-      "Edit(./trend-raw/**)",
-      "NotebookEdit(./trend-raw/**)",
       "Write(./project/0-project-raw/**)",
       "Edit(./project/0-project-raw/**)",
       "NotebookEdit(./project/0-project-raw/**)"

@@ -4,14 +4,14 @@
 
 ## 這個 repo 提供什麼
 
-- **可直接使用的空骨架**：四套工作流的規範檔（SPEC）、README、範本、儀表板、斜線命令，以及匯入比對工具 `tools/import_diff.py`、frontmatter 守門員 `tools/check_frontmatter.py`、發行抽取工具 `tools/extract_pack.py`，目錄結構已就位。
-- **Claude Code 的自動守門與委派**：`.claude/settings.json` 掛 PostToolUse hook，每次寫 `.md` 自動驗 YAML frontmatter；`permissions.deny` 把 `project/0-project-raw/` 鎖成唯讀；`.claude/agents/` 附 `news-extractor` 子代理，趨勢匯入時平行抽取、把原文擋在子脈絡外。其他 Agent 不吃這些設定，靠總綱的規範自律。
+- **可直接使用的空骨架**：四套工作流的規範檔（SPEC）、README、範本、儀表板、斜線命令，以及匯入比對工具 `tools/import_diff.py`、frontmatter 守門員 `tools/check_frontmatter.py`、文件抽取工具 `tools/extract.py`（pdf/docx/pptx/xlsx → UTF-8 markdown），目錄結構已就位。
+- **Claude Code 的自動守門與委派**：`.claude/settings.json` 掛 PostToolUse hook，每次寫 `.md` 自動驗 YAML frontmatter（三類坑：半形冒號、未加引號的 `[[連結]]`、結尾 `---` 未單獨成行）；`permissions.deny` 刻意留空——三個 raw 區常要把新檔搬進去，deny 會連搬檔都擋掉，唯讀改由規範自律；`.claude/agents/` 附 `news-extractor` 子代理，趨勢匯入時平行抽取、把原文擋在子脈絡外。其他 Agent 不吃這些設定，靠總綱的規範自律。
 - **一鍵安裝包**：[知識管理框架-安裝懶人包.md](知識管理框架-安裝懶人包.md) —— 把整份文件貼進新的 Agent 工作階段，說「請依此懶人包，在目前資料夾安裝『知識管理框架』」，即可在任何資料夾重建本骨架（本 repo 的骨架就是由它產生）。
 - **就地升級包**：[知識管理框架-升級包-四工作流.md](知識管理框架-升級包-四工作流.md) —— 已安裝舊版的人用它升級到現行四套完整版，不覆蓋既有資料。
 
 ## 多 Agent 通用設計
 
-總綱是**兩份平行維護的完整正本**（骨架裡 [CLAUDE.md](CLAUDE.md) 與 [AGENTS.md](AGENTS.md) 內容相同），不是「一份正本＋import 指標」。理由是 Agent 能力不同：會依路由確實去追子規範的，總綱可以瘦；不一定追參照的，關鍵鐵則**必須內嵌**才跑得起來——指標式的間接層在這裡不可靠。**代價是同步義務**：安全護欄、共用慣例、橋接原則這類實質規則改動時，兩份都要改（兩份總綱各自的「兩份總綱的分工」一節有寫）。
+總綱是**兩份平行維護的完整正本**（[CLAUDE.md](CLAUDE.md) 與 [AGENTS.md](AGENTS.md) 共用規則相同；`AGENTS.md` 另含「Codex 執行適配」一節），不是「一份正本＋import 指標」。理由是兩端的原生入口、工具與執行環境不同：兩份都保留可獨立使用的共用規則，再各自適配執行方式。**代價是同步義務**：安全護欄、共用慣例、橋接原則這類實質規則改動時，兩份都要改（兩份總綱各自的「兩份總綱的分工」一節有寫）。
 
 | Agent | 規則載入 | skills 位置 |
 |---|---|---|
@@ -55,7 +55,7 @@
 | **趨勢庫 trend-wiki/** | 高頻新聞低成本捕獲＋趨勢，沉澱回 wiki | 食材速記 | trend-wiki/TREND-WIKI.md | trend-wiki/README.md |
 | **個人觀點庫 personal-km/** | 只收你的觀點/判斷/經驗；卡片盒 | 傳說食材 | personal-km/PERSONAL-KM.md | personal-km/README.md |
 
-跟任一 Agent（Claude Code／Codex／Antigravity）對話時，它先讀根目錄 `AGENTS.md` 總綱判斷任務屬哪套，再讀對應子規範（Codex 原生讀取；Claude Code 經 `CLAUDE.md`、Antigravity 經 `.agents/AGENTS.md` 指標檔載入同一份）。不確定屬哪套？直接說需求即可。
+跟任一 Agent（Claude Code／Codex／Antigravity）對話時，它先讀根目錄 `AGENTS.md` 總綱判斷任務屬哪套，再讀對應子規範（Codex 原生讀根目錄 `AGENTS.md`；Claude Code 原生讀 `CLAUDE.md`——兩份是刻意平行維護的完整總綱；Antigravity 經 `.agents/AGENTS.md` 指標檔導回 `AGENTS.md`）。不確定屬哪套？直接說需求即可。
 
 ## 怎麼開始（每套一句話）
 - **累積知識**：文件放進 `raw/` →「匯入這份」→ 提問 →「健檢」。

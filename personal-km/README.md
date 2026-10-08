@@ -1,6 +1,6 @@
 # personal-km — 個人觀點知識庫（傳說食材）
 
-> 給「人」看的使用說明。Claude 遵循的完整規範在 [PERSONAL-KM.md](PERSONAL-KM.md)；內容清單見 [index-personal-km.md](index-personal-km.md)。
+> 給「人」看的使用說明。各 Agent 遵循的完整規範在 [PERSONAL-KM.md](PERSONAL-KM.md)；內容清單見 [index-personal-km.md](index-personal-km.md)。
 
 ## 這是什麼
 第二個知識庫，只收**你的觀點、判斷、經驗、洞見**——「傳說食材」。客觀事實歸 wiki（一般食材）。
@@ -9,6 +9,7 @@
 
 ## 卡片盒（Zettelkasten）結構
 一卡一想法（原子化）；導覽靠**領域 MOC＋`[[連結]]`**，不靠固定資料夾。每張卡強制兩層：`## 客觀層（一般食材）`＋`## 我的觀點 ★（傳說食材）`——**觀點層空白就進不了 2-cards**。
+**非空不等於你的觀點**：只有你親自表達或明確採納的內容才能入卡。AI 推導先列「AI 延伸候選（待使用者確認）」，不會因為寫得像第一人稱就當成你的立場；真實提問卡也不必硬編答案。
 
 ## 日常動作
 | 動作 | 你說什麼 | 結果 |
@@ -19,4 +20,7 @@
 | 上架待確認 | `/km-ready ⟨卡⟩`（留空掃描） | gate 檢查＋metadata 健檢＋列入 _pending-confirm |
 | 確認 | 打勾 `- [x]` →「確認」 | 定稿進 2-cards、記 log。**觀點永遠你拍板** |
 | 檢查 | 「檢查 2-cards／某卡」 | 就地標待更新、健檢觀點密度 |
-| 查詢加值 | 「用 personal-km＋wiki 論述〈X〉」 | 撈卡(主張)＋wiki(靜態事實)＋trend-wiki(時序佐證)配對成論述 → 全文留存 `3-output/`（`cards_used`＋`wiki_refs`、卡 `used_in` 回勾）→ 新洞見回填成卡 |
+| 查詢加值 | 「用 personal-km＋wiki 論述〈X〉」 | 配對主張(卡)與證據(wiki／trend-wiki)，全文留存 `3-output/` 並回勾 `used_in`；AI 新延伸另列候選，你採納後才進 inbox |
+
+**檢查怎麼看**：觀點密度只算結構；你要求 review 時，另檢查主張、個人出處與適用條件。AI 不會為了提升指標代填觀點，也不會因舊卡缺出處就自行改寫或退役。
+**引用方向**：卡片引用 wiki／trend-wiki，客觀內容頁不反向加個人觀點；要反向找卡可看 Obsidian 的 backlinks。

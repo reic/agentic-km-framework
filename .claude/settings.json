@@ -22,11 +22,7 @@
       "PowerShell(python tools/extract.py *)",
       "PowerShell(python tools/check_frontmatter.py*)"
     ],
-    "deny": [
-      "Write(./project/0-project-raw/**)",
-      "Edit(./project/0-project-raw/**)",
-      "NotebookEdit(./project/0-project-raw/**)"
-    ]
+    "deny": []
   },
   "hooks": {
     "PostToolUse": [
